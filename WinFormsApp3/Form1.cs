@@ -35,12 +35,12 @@ namespace WinFormsApp3
                 LoadAtistirmalik();
                 LoadKirtasiye();
                 LoadDiger();
-                baglanti.Close(); // Form yüklenmesi tamamlandıktan sonra bağlantıyı kapat
+                baglanti.Close(); // Form yÃ¼klenmesi tamamlandÃ½ktan sonra baÃ°lantÃ½yÃ½ kapat
                 toplamTutarTextBox.Text = "Toplam Tutar = " + toplamTutar.ToString() + " \u20BA";
             }
             else
             {
-                MessageBox.Show("Bağlantı oluşturulamadı veya açılamadı.");
+                MessageBox.Show("BaÃ°lantÃ½ oluÃ¾turulamadÃ½ veya aÃ§Ã½lamadÃ½.");
             }
 
         }
@@ -59,18 +59,18 @@ namespace WinFormsApp3
         private void LoadIcecekler()
         {
 
-            LoadListView(2, iceceklerListView);//İçecek kategoriID=2
+            LoadListView(2, iceceklerListView);//ÃÃ§ecek kategoriID=2
         }
         private void LoadAtistirmalik()
         {
 
-            LoadListView(3, atistirmalikListView);//Atıştırmalık kategoriID=3
+            LoadListView(3, atistirmalikListView);//AtÃ½Ã¾tÃ½rmalÃ½k kategoriID=3
         }
 
         private void LoadKirtasiye()
         {
 
-            LoadListView(4, kirtasiyeListView);//Kırtasiye kategoriID=4
+            LoadListView(4, kirtasiyeListView);//KÃ½rtasiye kategoriID=4
 
         }
 
@@ -93,9 +93,9 @@ namespace WinFormsApp3
                 listView.Items.Clear(); 
                 listView.View = View.Details; 
 
-                // Sütunları oluştur
+                // SÃ¼tunlarÃ½ oluÃ¾tur
                 listView.Columns.Clear();
-                listView.Columns.Add("Ürün Adı", 90);
+                listView.Columns.Add("ÃœrÃ¼n AdÃ½", 90);
                 listView.Columns.Add("Fiyat", 50);
 
                 while (reader.Read())
@@ -109,7 +109,7 @@ namespace WinFormsApp3
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Verileri yükleme sırasında bir hata oluştu: " + ex.ToString());
+                MessageBox.Show("Verileri yÃ¼kleme sÃ½rasÃ½nda bir hata oluÃ¾tu: " + ex.ToString());
             }
         }
 
@@ -119,14 +119,14 @@ namespace WinFormsApp3
         {
             try
             {
-                //baglanti = new SqlConnection("Data Source=DESKTOP-TN16GPU;Initial Catalog=Kantin;Integrated Security=True");
-                baglanti = new SqlConnection("Server=kantin.database.windows.net;Database=Kantin;User Id=kantinAdmin;Password=kantin123.;");
+                //baglanti = new SqlConnection("local");
+                baglanti = new SqlConnection(/*cloud*/  /* AZURE baglantÄ± adresÄ± */);
 
                 baglanti.Open();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("SQL Query sırasında hata oluştu !" + ex.ToString());
+                MessageBox.Show("SQL Query sÃ½rasÃ½nda hata oluÃ¾tu !" + ex.ToString());
             }
         }
 
@@ -150,7 +150,7 @@ namespace WinFormsApp3
             }
             else
             {
-                MessageBox.Show("Listeden silmek istediğiniz öğeyi seçiniz.", "HATA");
+                MessageBox.Show("Listeden silmek istediÃ°iniz Ã¶Ã°eyi seÃ§iniz.", "HATA");
             }
         }
 
@@ -203,7 +203,7 @@ namespace WinFormsApp3
             }
             else
             {
-                MessageBox.Show("Bağlantı oluşturulamadı veya açılamadı.");
+                MessageBox.Show("BaÃ°lantÃ½ oluÃ¾turulamadÃ½ veya aÃ§Ã½lamadÃ½.");
             }
         }
 
@@ -271,7 +271,7 @@ namespace WinFormsApp3
 
             if (secilenUrunSayisi == 0)
             {
-                MessageBox.Show("Lütfen bir ürün seçiniz.");
+                MessageBox.Show("LÃ¼tfen bir Ã¼rÃ¼n seÃ§iniz.");
             }
             else if (secilenUrunSayisi == 1)
             {
@@ -289,7 +289,7 @@ namespace WinFormsApp3
 
                 string urunAdi = secilenUrun.SubItems[0].Text;
 
-                string yeniFiyat = Interaction.InputBox("Ürünün yeni fiyatını giriniz", "Fiyat Güncelleme");
+                string yeniFiyat = Interaction.InputBox("ÃœrÃ¼nÃ¼n yeni fiyatÃ½nÃ½ giriniz", "Fiyat GÃ¼ncelleme");
 
                 bool sayiMi = double.TryParse(yeniFiyat, out double yeniFiyat2);
                 if (sayiMi)
@@ -303,16 +303,16 @@ namespace WinFormsApp3
                         cmd.ExecuteNonQuery();
                     }
                     baglanti.Close();
-                    MessageBox.Show("Fiyat başarıyla güncellendi.");
+                    MessageBox.Show("Fiyat baÃ¾arÃ½yla gÃ¼ncellendi.");
                 }
                 else
                 {
-                    MessageBox.Show("Hatalı bir değer girdiniz. Lütfen tekrar deneyin.");
+                    MessageBox.Show("HatalÃ½ bir deÃ°er girdiniz. LÃ¼tfen tekrar deneyin.");
                 }
             }
             else
             {
-                MessageBox.Show("Fiyat güncellemek için yalnızca bir ürün seçmelisiniz.");
+                MessageBox.Show("Fiyat gÃ¼ncellemek iÃ§in yalnÃ½zca bir Ã¼rÃ¼n seÃ§melisiniz.");
             }
         }
 
@@ -323,7 +323,7 @@ namespace WinFormsApp3
 
             if (secilenUrunSayisi == 0)
             {
-                MessageBox.Show("Lütfen bir ürün seçiniz.");
+                MessageBox.Show("LÃ¼tfen bir Ã¼rÃ¼n seÃ§iniz.");
             }
             else if (secilenUrunSayisi == 1)
             {
@@ -349,19 +349,19 @@ namespace WinFormsApp3
                     try
                     {
                         command.ExecuteNonQuery();
-                        MessageBox.Show("Ürün başarıyla silindi.");
+                        MessageBox.Show("ÃœrÃ¼n baÃ¾arÃ½yla silindi.");
                         secilenUrun.Remove();
                     }
                     catch (SqlException ex)
                     {
-                        MessageBox.Show("Ürün silinirken bir hata oluştu: " + ex.Message);
+                        MessageBox.Show("ÃœrÃ¼n silinirken bir hata oluÃ¾tu: " + ex.Message);
                     }
                 }
                 baglanti.Close();
             }
             else
             {
-                MessageBox.Show("Silmek için yalnızca bir ürün seçmelisiniz.");
+                MessageBox.Show("Silmek iÃ§in yalnÃ½zca bir Ã¼rÃ¼n seÃ§melisiniz.");
             }
         }
 
@@ -375,7 +375,7 @@ namespace WinFormsApp3
 
         private void kayitSilButton_Click(object sender, EventArgs e)
         {
-            string ogrNo = Interaction.InputBox("Kaydını silmek istediğiniz öğrencinin numarasını giriniz.\nDİKKAT ! Öğrencinin geçmiş alışveriş bilgileri ve kart bilgileri de silinecektir.", "Kayıt Sil");
+            string ogrNo = Interaction.InputBox("KaydÃ½nÃ½ silmek istediÃ°iniz Ã¶Ã°rencinin numarasÃ½nÃ½ giriniz.\nDÃKKAT ! Ã–Ã°rencinin geÃ§miÃ¾ alÃ½Ã¾veriÃ¾ bilgileri ve kart bilgileri de silinecektir.", "KayÃ½t Sil");
             bool sayiMi = true;
             ogrNo = ogrNo.Trim();
             foreach (char karakter in ogrNo)
@@ -440,17 +440,17 @@ namespace WinFormsApp3
                         deleteOgrenci.Parameters.AddWithValue("@ogrNo", ogrNo);
                         deleteOgrenci.ExecuteNonQuery();
 
-                        MessageBox.Show("Öğrenci kaydı başarıyla silindi.");
+                        MessageBox.Show("Ã–Ã°renci kaydÃ½ baÃ¾arÃ½yla silindi.");
                     }
                     else
                     {
-                        MessageBox.Show("Belirtilen öğrenci numarasıyla eşleşen bir kart bulunamadı.");
+                        MessageBox.Show("Belirtilen Ã¶Ã°renci numarasÃ½yla eÃ¾leÃ¾en bir kart bulunamadÃ½.");
                         reader.Close(); 
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("SQL sorgusu sırasında hata oluştu! " + ex.ToString());
+                    MessageBox.Show("SQL sorgusu sÃ½rasÃ½nda hata oluÃ¾tu! " + ex.ToString());
                 }
                 finally
                 {
@@ -459,7 +459,7 @@ namespace WinFormsApp3
             }
             else
             {
-                MessageBox.Show("Girdi rakam dışında karakterler içeriyor.");
+                MessageBox.Show("Girdi rakam dÃ½Ã¾Ã½nda karakterler iÃ§eriyor.");
             }
         }
 
@@ -471,7 +471,7 @@ namespace WinFormsApp3
             DateTime dateTime = DateTime.Now;
             if (listView1.Items.Count == 0)
             {
-                MessageBox.Show("Satış ekranı boş. Lütfen ürün ekleyin.");
+                MessageBox.Show("SatÃ½Ã¾ ekranÃ½ boÃ¾. LÃ¼tfen Ã¼rÃ¼n ekleyin.");
             }
             else
             {
@@ -493,7 +493,7 @@ namespace WinFormsApp3
                             }
                             catch (TimeoutException)
                             {
-                                // Zaman aşımı durumunda beklemeye devam et
+                                // Zaman aÃ¾Ã½mÃ½ durumunda beklemeye devam et
                             }
                         }
                     });
@@ -503,7 +503,7 @@ namespace WinFormsApp3
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Bağlantı hatası: " + ex.Message);
+                    MessageBox.Show("BaÃ°lantÃ½ hatasÃ½: " + ex.Message);
                 }
                 finally
                 {
@@ -538,7 +538,7 @@ namespace WinFormsApp3
                         }
                     }
 
-                    // Günlük limit sorgusu
+                    // GÃ¼nlÃ¼k limit sorgusu
                     using (SqlCommand command2 = new SqlCommand(query2, baglanti))
                     {
                         command2.Parameters.AddWithValue("@kartIDNumbers", kartIDNumbers);
@@ -552,12 +552,12 @@ namespace WinFormsApp3
                         }
                     }
 
-                    // Günlük toplam sorgusu
+                    // GÃ¼nlÃ¼k toplam sorgusu
                     using (SqlCommand command3 = new SqlCommand(query3, baglanti))
                     {
                         command3.Parameters.AddWithValue("@kartIDNumbers", kartIDNumbers);
 
-                        // Gün içindeki diğer satışların toplamı
+                        // GÃ¼n iÃ§indeki diÃ°er satÃ½Ã¾larÃ½n toplamÃ½
                         object result = command3.ExecuteScalar();
                         if (result != null && result != DBNull.Value)
                         {
@@ -565,14 +565,14 @@ namespace WinFormsApp3
                         }
                     }
 
-                    // Sonuçları yazdırma
-                    //MessageBox.Show("Bakiye: " + bakiye + "\nGünlük Limit: " + gunlukLimit);
+                    // SonuÃ§larÃ½ yazdÃ½rma
+                    //MessageBox.Show("Bakiye: " + bakiye + "\nGÃ¼nlÃ¼k Limit: " + gunlukLimit);
 
                     if (toplamTutar <= bakiye)
                     {
                         if (toplamTutar + gunlukToplam <= gunlukLimit)
                         {
-                            MessageBox.Show("Satış işlemi başarılı.");
+                            MessageBox.Show("SatÃ½Ã¾ iÃ¾lemi baÃ¾arÃ½lÃ½.");
                             int yeniBakiye = bakiye - toplamTutar;
                             
                             dbConnection();
@@ -589,7 +589,7 @@ namespace WinFormsApp3
                                 }
                                 catch (Exception ex)
                                 {
-                                    MessageBox.Show("Bir hata oluştu: " + ex.Message);
+                                    MessageBox.Show("Bir hata oluÃ¾tu: " + ex.Message);
                                 }
                             }
 
@@ -606,36 +606,36 @@ namespace WinFormsApp3
                                 }
                                 catch (Exception ex)
                                 {
-                                    MessageBox.Show("Bir hata oluştu: " + ex.Message);
+                                    MessageBox.Show("Bir hata oluÃ¾tu: " + ex.Message);
                                 }
                             }
                             satisDetayKayit(dateTime);
                         }
                         else
                         {
-                            MessageBox.Show("SATIŞ BAŞARISIZ.\nToplam tutar günlük bakiye limitinin üzerinde.");
+                            MessageBox.Show("SATIÃ BAÃARISIZ.\nToplam tutar gÃ¼nlÃ¼k bakiye limitinin Ã¼zerinde.");
                         }
                     }
                     else
                     {
-                        MessageBox.Show("SATIŞ BAŞARISIZ.\nBakiye Yetersiz.");
+                        MessageBox.Show("SATIÃ BAÃARISIZ.\nBakiye Yetersiz.");
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Bir hata oluştu: " + ex.Message);
+                    MessageBox.Show("Bir hata oluÃ¾tu: " + ex.Message);
                 }
                 finally
                 {
                     if (baglanti != null && baglanti.State == System.Data.ConnectionState.Open)
                     {
-                        baglanti.Close(); // Bağlantıyı kapat
+                        baglanti.Close(); // BaÃ°lantÃ½yÃ½ kapat
                     }
                 }
             }
 
 
-            ///////////////////////////////////////////////////////////////////// satış detay kayıt
+            ///////////////////////////////////////////////////////////////////// satÃ½Ã¾ detay kayÃ½t
             //
 
             
@@ -670,7 +670,7 @@ namespace WinFormsApp3
                             }
                             else
                             {
-                                MessageBox.Show("satisID değeri geçersiz.");
+                                MessageBox.Show("satisID deÃ°eri geÃ§ersiz.");
                             }
                         }
                     }
@@ -678,7 +678,7 @@ namespace WinFormsApp3
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Veritabanı sorgusu sırasında hata oluştu! " + ex.ToString());
+                MessageBox.Show("VeritabanÃ½ sorgusu sÃ½rasÃ½nda hata oluÃ¾tu! " + ex.ToString());
             }
             finally
             {
@@ -716,7 +716,7 @@ namespace WinFormsApp3
                                 }
                                 else
                                 {
-                                    MessageBox.Show("urunID değeri geçersiz.");
+                                    MessageBox.Show("urunID deÃ°eri geÃ§ersiz.");
                                 }
                             }
                         }
@@ -724,7 +724,7 @@ namespace WinFormsApp3
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Veritabanı sorgusu sırasında hata oluştu! " + ex.ToString());
+                    MessageBox.Show("VeritabanÃ½ sorgusu sÃ½rasÃ½nda hata oluÃ¾tu! " + ex.ToString());
                 }
                 finally
                 {
@@ -752,7 +752,7 @@ namespace WinFormsApp3
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Satış detay kaydı sırasında hata oluştu! " + ex.ToString());
+                        MessageBox.Show("SatÃ½Ã¾ detay kaydÃ½ sÃ½rasÃ½nda hata oluÃ¾tu! " + ex.ToString());
                     }
                     finally
                     {
